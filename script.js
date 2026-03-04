@@ -1,52 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile menu toggle
-    const mobileToggle = document.getElementById('mobileToggle');
+    const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
 
-    mobileToggle.addEventListener('click', () => {
+    // Mobile Menu Toggle
+    menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
     });
 
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach(link => {
+    // Close mobile menu when link clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            menuToggle.textContent = '☰';
         });
     });
 
-    // Scroll Reveal Animation
-    const reveal = () => {
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(el => {
-            const windowHeight = window.innerHeight;
-            const elementTop = el.getBoundingClientRect().top;
-            const elementVisible = 150;
-            if (elementTop < windowHeight - elementVisible) {
-                el.classList.add('active');
-            }
-        });
-    };
-
-    window.addEventListener('scroll', reveal);
-    reveal(); // Run at start
-
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href === '#') return;
             e.preventDefault();
-            const target = document.querySelector(href);
+            const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: target.offsetTop - 80,
                     behavior: 'smooth'
                 });
             }
         });
+    });
+
+    // Simple scroll animation for header
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.padding = '10px 0';
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            header.style.padding = '0';
+            header.style.background = '#ffffff';
+        }
     });
 });
