@@ -1,45 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.querySelectorAll('.mobile-nav a');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.getElementById('nav-links');
 
     // Toggle Mobile Menu
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        const icon = menuBtn.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
     });
 
-    // Close menu when link is clicked
-    navLinks.forEach(link => {
+    // Close menu when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
+            navLinks.classList.remove('active');
         });
     });
 
-    // Smooth Scroll Offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        });
-    });
-
-    // Reveal animations on scroll
+    // Smooth Scroll Reveal Animation (Simulated)
     const observerOptions = {
         threshold: 0.1
     };
@@ -53,10 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.service-card, .review-card').forEach(el => {
+    // Apply basic reveal effect to cards
+    document.querySelectorAll('.card, .review-card').forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
+        el.style.transform = 'translateY(20px)';
         el.style.transition = 'all 0.6s ease-out';
         observer.observe(el);
     });
+
 });
