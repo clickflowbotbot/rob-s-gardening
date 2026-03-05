@@ -1,33 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-    hamburger.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
+    // Mobile Menu Toggle
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
     });
 
-    // Close menu when clicking links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+    // Close menu when link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
         });
     });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 70,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Basic animation on scroll
+    // Simple scroll animation for headers
     const observerOptions = {
         threshold: 0.1
     };
@@ -41,10 +29,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.service-card, .review-card').forEach(el => {
+    const animateElements = document.querySelectorAll('h2, .service-card, .review-card');
+    animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
-        el.style.transition = '0.6s ease-out';
+        el.style.transition = 'all 0.6s ease-out';
         observer.observe(el);
+    });
+
+    // Sticky Header Shrink
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.style.height = '70px';
+        } else {
+            nav.style.height = '80px';
+        }
     });
 });
