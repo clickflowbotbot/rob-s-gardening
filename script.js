@@ -1,44 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
 
     // Mobile Menu Toggle
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    menuBtn.addEventListener('click', () => {
+        if (navLinks.style.display === 'flex') {
+            navLinks.style.display = 'none';
+        } else {
+            navLinks.style.display = 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.backgroundColor = 'white';
+            navLinks.style.padding = '20px';
+            navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+        }
     });
 
-    // Close mobile menu when link clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuToggle.textContent = '☰';
-        });
-    });
-
-    // Smooth scroll for anchors
+    // Smooth scroll for internal links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80,
+                target.scrollIntoView({
                     behavior: 'smooth'
                 });
+                // Close mobile menu if open
+                if (window.innerWidth <= 768) {
+                    navLinks.style.display = 'none';
+                }
             }
         });
     });
 
-    // Simple scroll animation for header
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.style.padding = '10px 0';
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-        } else {
-            header.style.padding = '0';
-            header.style.background = '#ffffff';
-        }
+    // Simple scroll animation for cards
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.card, .review-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
     });
 });
