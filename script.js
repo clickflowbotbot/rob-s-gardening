@@ -1,48 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('mobile-menu');
+    const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links a');
 
-    // Mobile Menu Toggle
+    // Toggle menu
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        hamburger.innerHTML = navLinks.classList.contains('active') ? '&#10005;' : '&#9776;';
     });
 
-    // Close menu when a link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    // Close menu on link click
+    links.forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            hamburger.innerHTML = '&#9776;';
         });
     });
 
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const navHeight = document.querySelector('nav').offsetHeight;
-                const targetPosition = targetElement.offsetTop - navHeight;
+            const domain = new URL(this.href).hostname;
+            if (domain === window.location.hostname && this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - navHeight,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
 
-    // Simple scroll animation for nav
-    window.addEventListener('scroll', () => {
-        const nav = document.querySelector('nav');
-        if (window.scrollY > 50) {
-            nav.style.padding = '0.5rem 5%';
-            nav.style.background = 'rgba(255, 255, 255, 0.98)';
-        } else {
-            nav.style.padding = '1rem 5%';
-            nav.style.background = '#ffffff';
-        }
+    // Reveal on scroll (simple)
+    const reveal = () => {
+        const cards = document.querySelectorAll('.card, .testimonial-card');
+        cards.forEach(card => {
+            const windowHeight = window.innerHeight;
+            const cardTop = card.getBoundingClientRect().top;
+            const revealPoint = 150;
+            if (cardTop < windowHeight - revealPoint) {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    // Initial styles for reveal
+    document.querySelectorAll('.card, .testimonial-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.6s ease-out';
     });
+
+    window.addEventListener('scroll', reveal);
+    reveal(); // run once
 });
