@@ -1,63 +1,51 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
+    const navToggle = document.getElementById('navToggle');
     const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links a');
 
-    // Toggle menu
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.innerHTML = navLinks.classList.contains('active') ? '&#10005;' : '&#9776;';
+    navToggle.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        if (navLinks.style.display === 'flex') {
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '80px';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '20px';
+            navLinks.style.boxShadow = '0 10px 10px rgba(0,0,0,0.1)';
+        }
     });
 
-    // Close menu on link click
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.innerHTML = '&#9776;';
-        });
-    });
-
-    // Smooth scroll for anchors
+    // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const domain = new URL(this.href).hostname;
-            if (domain === window.location.hostname && this.getAttribute('href').startsWith('#')) {
+            if (this.hash !== "") {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    const navHeight = document.querySelector('nav').offsetHeight;
+                const target = document.querySelector(this.hash);
+                if (target) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - navHeight,
+                        top: target.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.style.display = 'none';
+                    }
                 }
             }
         });
     });
 
-    // Reveal on scroll (simple)
-    const reveal = () => {
-        const cards = document.querySelectorAll('.card, .testimonial-card');
-        cards.forEach(card => {
-            const windowHeight = window.innerHeight;
-            const cardTop = card.getBoundingClientRect().top;
-            const revealPoint = 150;
-            if (cardTop < windowHeight - revealPoint) {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }
-        });
-    };
-
-    // Initial styles for reveal
-    document.querySelectorAll('.card, .testimonial-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'all 0.6s ease-out';
+    // Scroll Header Effect
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.style.height = '70px';
+            nav.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+        } else {
+            nav.style.height = '80px';
+            nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+        }
     });
-
-    window.addEventListener('scroll', reveal);
-    reveal(); // run once
 });
