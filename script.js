@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
 
-    // Toggle Mobile Menu
-    menuBtn.addEventListener('click', () => {
+    // Mobile Menu Toggle
+    hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
 
@@ -14,42 +14,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Smooth scroll for all anchor links
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetElement.offsetTop - navHeight;
+                
                 window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Simple Animation on Scroll
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.service-card, .testimonial-card').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
+    // Simple scroll animation for nav
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.style.padding = '0.5rem 5%';
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            nav.style.padding = '1rem 5%';
+            nav.style.background = '#ffffff';
+        }
     });
 });
