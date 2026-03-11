@@ -4,127 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rob's Gardening — Gardener in Kenmore, Queensland</title>
-    <meta name="description" content="Expert landscape maintenance and gardening services in Kenmore, QLD. Professional, reliable, and high-quality garden care by Rob's Gardening.">
-    <link rel="stylesheet" href="styles.css?v=c52f8e16">
+    <meta name="description" content="Professional gardening and lawn maintenance services in Kenmore, QLD. Call Rob's Gardening today for a beautiful landscape. 4.9 stars from 42 reviews.">
+    <meta property="og:title" content="Rob's Gardening — Gardener in Kenmore, Queensland">
+    <meta property="og:description" content="Reliable gardening, weeding, and landscape maintenance in Kenmore.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=55d0e417">
 </head>
 <body>
 
 <nav>
-    <div class="container nav-container">
-        <a href="#" class="logo">Rob's Gardening</a>
-        <div class="nav-links" id="navLinks">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#testimonials">Reviews</a>
-            <a href="tel:+61427039547" class="btn">Call Now</a>
-        </div>
-        <div class="hamburger" onclick="toggleMenu()">
+    <div class="container nav-content">
+        <a href="#" class="logo">ROB'S GARDENING</a>
+        <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Hours</a></li>
+            <li><a href="tel:+61427039547" class="nav-cta">📞 0427 039 547</a></li>
+        </ul>
     </div>
 </nav>
 
 <section id="hero">
-    <div class="container hero-content">
+    <div class="hero-content">
         <h1>Gardener in Kenmore</h1>
-        <p>Premium garden maintenance and restoration for homes across Kenmore. High attention to detail and reliable service.</p>
-        <div class="hero-rating">
-            4.9 &#9733; (42 reviews)
-        </div>
-        <a href="tel:+61427039547" class="btn btn-accent">Request a Free Quote</a>
-    </div>
-</section>
-
-<section class="trust-bar">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <h4>4.9 &#9733;</h4>
-                <p>Google Rating</p>
-            </div>
-            <div class="stat-item">
-                <h4>Kenmore</h4>
-                <p>Local Service</p>
-            </div>
-            <div class="stat-item">
-                <h4>42</h4>
-                <p>Client Reviews</p>
-            </div>
+        <div class="hero-rating">4.9 &#9733; (42 reviews)</div>
+        <p style="font-size: 1.2rem; margin-bottom: 40px; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Experienced, reliable, and hardworking local gardening services for Kenmore and surrounding suburbs. Let Rob transform your outdoor space.</p>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="tel:+61427039547" class="btn btn-accent">Request Quote Now</a>
+            <a href="#services" class="btn btn-primary" style="background: white; color: var(--primary);">View Our Services</a>
         </div>
     </div>
 </section>
 
-<section id="services" class="services">
+<div class="trust-bar">
     <div class="container">
-        <div class="section-head">
-            <h2>Professional Garden Services</h2>
-            <p>Complete care for your outdoor spaces</p>
+        <div class="trust-stats">
+            <div class="stat-item">
+                <h4>5/5 Stars</h4>
+                <p>Google Rated</p>
+            </div>
+            <div class="stat-item">
+                <h4>100%</h4>
+                <p>Local Reliability</p>
+            </div>
+            <div class="stat-item">
+                <h4>Kenmore QLD</h4>
+                <p>Service Area</p>
+            </div>
+            <div class="stat-item">
+                <h4>Mon - Sat</h4>
+                <p>Opening Hours</p>
+            </div>
         </div>
-        <div class="service-grid">
+    </div>
+</div>
+
+<section id="services" class="section-padding">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Professional Services</h2>
+            <p>From simple lawn maintenance to complete yard overhauls</p>
+        </div>
+        <div class="services-grid">
             <div class="service-card">
-                <img src="images/service1.png" alt="Garden Maintenance" class="service-img">
+                <div class="service-img" style="background-image: url('images/service1.png');"></div>
                 <div class="service-info">
                     <h3>Garden Maintenance</h3>
-                    <p>Regular weeding, pruning, and general upkeep to keep your backyard looking its absolute best year-round.</p>
+                    <p>Comprehensive weeding, pruning, and detailed garden upkeep to keep your property looking its absolute best year-round.</p>
                 </div>
             </div>
             <div class="service-card">
-                <img src="images/service2.png" alt="Jungle Clearance" class="service-img">
+                <div class="service-img" style="background-image: url('images/service2.png');"></div>
                 <div class="service-info">
-                    <h3>Restoration & Clearing</h3>
-                    <p>Specialising in tackling overgrown "jungles" and restoring them to clean, manageable garden beds.</p>
+                    <h3>Jungle Clearing</h3>
+                    <p>Overgrown yard? We specialize in major garden clean-ups and waste removal, turning a "jungle" back into a peaceful garden.</p>
                 </div>
             </div>
             <div class="service-card">
-                <img src="images/service3.png" alt="Waste Removal" class="service-img">
+                <div class="service-img" style="background-image: url('images/service3.png');"></div>
                 <div class="service-info">
-                    <h3>Waste Removal</h3>
-                    <p>Full removal of garden debris and green waste, leaving your property spotless after every visit.</p>
+                    <h3>Lawn Care</h3>
+                    <p>Professional edge trimming and precision mowing. We ensure your lawn is healthy, neat, and the envy of the street.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="about" class="about">
-    <div class="container about-content">
-        <div class="about-text">
-            <h2>About Rob's Gardening</h2>
-            <p>Based in Kenmore, Rob provides professional gardening services with a focus on "good old fashioned work ethics." Known for being extremely organised and professional, Rob takes pride in transforming disorganized outdoor spaces into beautiful gardens.</p>
-            <p>Whether you need a one-off cleanup of an overgrown yard or regular maintenance to keep your property looking sharp, Rob delivers reasonable rates and exceptional results.</p>
-            <a href="tel:+61427039547" class="btn">Call Rob Today</a>
-        </div>
-        <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14175.795156449557!2d152.948271!3d-27.5102217!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDMwJzM2LjgiUyAxNTLCsDU2JzUzLjgiRQ!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </div>
-</section>
-
-<section id="testimonials" class="testimonials">
+<section id="testimonials" class="section-padding testimonials-section">
     <div class="container">
-        <div class="section-head">
+        <div class="section-header">
             <h2>What Our Clients Say</h2>
-            <p>4.9 &#9733; (42 reviews) on Google</p>
+            <div class="hero-rating" style="color: var(--primary); text-shadow: none;">4.9 &#9733; (42 reviews)</div>
         </div>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
+        <div class="testimonials-grid">
+            <div class="review-card">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <p>"I had an absolute jungle down my back yard. Rob came and cleared it up in no time. He did a fabulous job. Really nice bloke with good old fashioned work ethics and reasonable rates."</p>
                 <strong>— Narelle Stewart</strong>
             </div>
-            <div class="testimonial-card">
+            <div class="review-card">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>"We have recently asked Rob to maintain our garden. He works hard and is very organised. Very pleased with his services."</p>
+                <p>"We have recently asked Rob to maintain our garden. He works hard and is very organised . Very pleased with his services."</p>
                 <strong>— Paul Blake</strong>
             </div>
-            <div class="testimonial-card">
+            <div class="review-card">
                 <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>"I reached out to Rob to help with garden maintenance and cleaning and removal of garden waste. Rob was extremely professional and friendly. His communication was prompt."</p>
+                <p>"Rob was extremely professional and friendly. His communication was prompt and he was very organised. He did a fantastic job and I would highly recommend Rob."</p>
                 <strong>— Mazeta coelho</strong>
             </div>
         </div>
@@ -132,40 +126,72 @@
 </section>
 
 <section id="cta-banner">
-    <div class="container cta-content">
-        <h2>Ready to Transform Your Garden?</h2>
-        <p>Join dozens of happy homeowners in Kenmore who trust Rob's Gardening.</p>
-        <p style="margin-bottom: 30px;">4.9 &#9733; (42 reviews)</p>
-        <a href="tel:+61427039547" class="btn btn-accent">Get A Quote: 0427 039 547</a>
+    <div class="cta-content">
+        <h2>Ready for a beautiful garden?</h2>
+        <div class="cta-rating">4.9 &#9733; (42 reviews)</div>
+        <p style="margin-bottom: 30px; line-height: 1.4; text-shadow: 0 2px 8px rgba(0,0,0,0.7);">Call Rob today for local, friendly service and reasonable rates in Kenmore.</p>
+        <a href="tel:+61427039547" class="btn btn-accent">Call 0427 039 547</a>
+    </div>
+</section>
+
+<section id="contact" class="info-section">
+    <div class="info-content">
+        <h2 style="color: var(--primary); margin-bottom: 30px;">Service Hours & Location</h2>
+        <ul class="hours-list">
+            <li><span>Monday</span> <span>7 AM to 7 PM</span></li>
+            <li><span>Tuesday</span> <span>7 AM to 7 PM</span></li>
+            <li><span>Wednesday</span> <span>7 AM to 7 PM</span></li>
+            <li><span>Thursday</span> <span>7 AM to 7 PM</span></li>
+            <li><span>Friday</span> <span>7 AM to 7 PM</span></li>
+            <li><span>Saturday</span> <span>7 AM to 7 PM</span></li>
+            <li><span>Sunday</span> <span>Closed</span></li>
+        </ul>
+        <div style="margin-top: 40px; padding: 20px; background: var(--gray); border-radius: 8px;">
+            <p style="margin: 0; font-weight: 700;">📍 Address:</p>
+            <p style="margin: 5px 0 0;">10 Alkina St, Kenmore QLD 4069, Australia</p>
+        </div>
+    </div>
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3538.30324869811!2d152.948271!3d-27.5102217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9150646c07a977%3A0x67341e98826d708f!2s10%20Alkina%20St%2C%20Kenmore%20QLD%204069%2C%20Australia!5e0!3m2!1sen!2sau!4v1715421234567!5m2!1sen!2sau" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
     </div>
 </section>
 
 <footer>
-    <div class="container footer-grid">
-        <div class="footer-brand">
-            <h3>Rob's Gardening</h3>
-            <p>📍 Kenmore, Queensland</p>
-            <p>📞 <a href="tel:+61427039547">+61 427 039 547</a></p>
-            <p>4.9 &#9733; (42 reviews)</p>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-title">ROB'S GARDENING</div>
+                <p>Your local Kenmore gardening expert. Dedicated to quality workmanship and honest prices.</p>
+                <p>4.9 &#9733; (42 reviews)</p>
+            </div>
+            <div class="footer-contact">
+                <div class="footer-title">Contact Us</div>
+                <p>📍 10 Alkina St, Kenmore QLD 4069</p>
+                <p>📞 <a href="tel:+61427039547" style="color: var(--accent);">0427 039 547</a></p>
+            </div>
+            <div>
+                <div class="footer-title">Quick Links</div>
+                <ul style="color: var(--gray-dark);">
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="#about">About Rob</a></li>
+                    <li><a href="#testimonials">Customer Reviews</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-hours">
-            <h3>Opening Hours</h3>
-            <ul class="schedule">
-                <li><span>Monday</span><span>7 AM - 7 PM</span></li>
-                <li><span>Tuesday</span><span>7 AM - 7 PM</span></li>
-                <li><span>Wednesday</span><span>7 AM - 7 PM</span></li>
-                <li><span>Thursday</span><span>7 AM - 7 PM</span></li>
-                <li><span>Friday</span><span>7 AM - 7 PM</span></li>
-                <li><span>Saturday</span><span>7 AM - 7 PM</span></li>
-                <li><span>Sunday</span><span>Closed</span></li>
-            </ul>
+        <div class="copyright">
+            &copy; 2024 Rob's Gardening. All rights reserved.
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 Rob's Gardening. All rights reserved. Professional Gardener in Kenmore, QLD.</p>
     </div>
 </footer>
 
-<script src="script.js?v=c52f8e16"></script>
+<script src="script.js?v=55d0e417"></script>
 </body>
-</html>
+</html>",js:

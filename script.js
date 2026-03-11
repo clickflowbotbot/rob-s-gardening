@@ -1,54 +1,52 @@
-function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  const links = document.querySelectorAll('.nav-links a');
+
+  // Toggle Mobile Menu
+  hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
-}
+  });
 
-// Close mobile menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
+  // Close menu when a link is clicked
+  links.forEach(link => {
     link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('active');
+      navLinks.classList.remove('active');
     });
-});
+  });
 
-// Smooth Scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // Smooth Scrolling for all internal links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        if (this.getAttribute('href') === '#') return;
-        
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-        }
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80, // Account for sticky nav
+          behavior: 'smooth'
+        });
+      }
     });
-});
+  });
 
-// Simple Scroll Reveal Animation
-const revealOnScroll = () => {
-    const elements = document.querySelectorAll('.service-card, .testimonial-card');
-    elements.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (elementTop < windowHeight - 50) {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }
+  // Simple scroll animation for cards
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
     });
-};
+  }, observerOptions);
 
-// Initial card styles for animation
-document.querySelectorAll('.service-card, .testimonial-card').forEach(el => {
+  document.querySelectorAll('.service-card, .review-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    el.style.transition = 'all 0.6s ease-out';
+    observer.observe(el);
+  });
 });
-
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
